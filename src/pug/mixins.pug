@@ -1,0 +1,127 @@
+mixin icon(id, className)
+	svg(xmlns:xlink="http://www.w3.org/1999/xlink" class=className)
+		use(xlink:href="#icon-" + id href="#icon-" + id)
+
+mixin video(video, thumbnail, source="youtube")
+	.video(data-video-id=video data-video-source=source)
+		.video__preview-wrapper
+			img.video__preview(src=thumbnail)
+		.video__play-btn
+			+icon('play-btn')
+
+mixin modal(id, withCloseBtn=true)
+	.modal(id=id)
+		.modal__window
+			if withCloseBtn
+				button.modal__close-btn(type="button")
+			block
+
+mixin nav-btn
+	.nav-btn
+		.nav-btn__line
+		.nav-btn__line
+		.nav-btn__line
+
+mixin stat-card(title, text)
+	.stat-card
+		.stat-card__title!=title 
+		.stat-card__text!=text 
+
+mixin titled-text-card(title, text)
+	.titled-text-card
+		.titled-text-card__title.title.title--mini!=title 
+		.titled-text-card__text!=text
+
+mixin learning-card(imgSrc, title)
+	.learning-card
+		.learning-card__img-wrapper 
+			img.learning-card__img(src=imgSrc)
+		.learning-card__title.title.title--mini!=title
+
+mixin location-card(title, text)
+	.location-card
+		.location-card__title!=title 
+		.location-card__text!=text
+
+mixin icon-card(icon, text) 
+	.icon-card
+		.icon-card__icon-container 
+			+icon(icon, 'icon-card__icon')
+		.icon-card__text!=text
+
+mixin program-card(title)
+	.program-card
+		.program-card__title!=title
+		.program-card__text 
+			block
+
+mixin we-have-card(imgSrc, title)
+	.we-have-card
+		.we-have-card__img-wrapper 
+			img.we-have-card__img(src=imgSrc)
+		.we-have-card__title.title.title--mini!=title
+		.we-have-card__text
+			block
+
+mixin pay-card(icon=true,imgSrc=false,title,text=false) 
+	.pay-card 
+		.pay-card__icon-container 
+			if icon 
+				+icon(icon, 'pay-card__icon')
+			if imgSrc 
+				img.pay-card__img(src=imgSrc)
+		.pay-card__content
+			.pay-card__title!=title
+			if text
+				.pay-card__text!=text
+
+mixin pay-installment-card(imgSrc, title)
+	.pay-installment-card
+		.pay-installment-card__img-wrapper 
+			img.pay-installment-card__img(src=imgSrc)
+		.pay-installment-card__title!=title
+
+mixin history-card(imgSrc, name, textOne, textTwo)
+	.history-card
+		.history-card__img-wrapper 
+			img.history-card__img(src=imgSrc)
+		.history-card__content 
+			.history-card__name!=name 
+			.history-card__way 
+				.history-card__way-point Точка А:
+				.history-card__way-text!=textOne
+			.history-card__way 
+				.history-card__way-point Точка Б:
+				.history-card__way-text!=textTwo
+
+mixin result-card(title,text)
+	.result-card
+		.result-card__title!=title
+		.result-card__text!=text
+
+mixin titled-image-card(imageSrc, title, isReverse=false)
+	mixin content
+		.titled-image-card__content
+			.titled-image-card__title.title.title--mini.title--mb-long!=title
+			.titled-image-card__text
+				block
+
+	mixin image(src)
+		.titled-image-card__image-wrapper
+			img(src=imageSrc)
+
+	.titled-image-card(class=(isReverse ? "titled-image-card--reverse" : ""))
+		if isReverse
+			+content
+				block
+			+image(imageSrc)
+		else
+			+image(imageSrc)
+			+content
+				block
+
+mixin icon-titled-card(imgSrc, title)
+	.icon-titled-card
+		.icon-titled-card__img-wrapper
+			img.icon-titled-card__img(src=imgSrc)
+		.icon-titled-card__title!=title
